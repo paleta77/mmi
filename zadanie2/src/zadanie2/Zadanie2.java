@@ -17,7 +17,7 @@ public class Zadanie2 {
      * @param args the command line arguments
      */
     public static int[][] wczytaj_figure() {  
-        System.out.print("Podaj ilosc wierzcholkow: ");
+        System.out.println("Podaj ilosc wierzcholkow: ");
         Scanner scan = new Scanner(System.in); //do wczytawania z klawiatury
         
         int wielkosc; //ilosc wierzcholkow
