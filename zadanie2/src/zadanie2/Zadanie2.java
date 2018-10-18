@@ -56,7 +56,14 @@ public class Zadanie2 {
             wynik =  wynik + Math.sqrt((tablica[i+1][0]-tablica[i][0])+(tablica[i+1][1]-tablica[i][1]));
         }
         
+        wynik = wynik + Math.sqrt((tablica[tablica.length-1][0]-tablica[tablica.length-1][0])+(tablica[0][1]-tablica[0][1]));
+        
         return wynik;
+    }
+    
+    public static double oblicz_pole(double tablica[][]){
+        
+        return //////////////////
     }
     
     public static void main(String[] args) {
