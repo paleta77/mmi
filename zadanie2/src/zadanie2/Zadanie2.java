@@ -62,8 +62,9 @@ public class Zadanie2 {
     }
     
     public static double oblicz_pole(double tablica[][]){
+        double pole = 0;
         
-        return //////////////////
+        return pole;
     }
     
     public static void main(String[] args) {
