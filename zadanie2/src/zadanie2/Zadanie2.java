@@ -71,7 +71,7 @@ public class Zadanie2 {
         
         pole = pole + ((tablica[0][1]+tablica[tablica.length-1][1])*(tablica[0][0]-tablica[tablica.length-1][0]))/2;
         
-        return pole;
+        return abs(pole);
     }
     
     public static void main(String[] args) {
@@ -79,7 +79,8 @@ public class Zadanie2 {
         
         double[][] wierzcholki = wczytaj_figure(); //tablica ze wspolrzednymi wierzcholkow
         wypisz_tablice(wierzcholki);
-        System.out.print("obwód: "+oblicz_obwod(wierzcholki));
+        System.out.println("obwód: "+oblicz_obwod(wierzcholki));
+        System.out.println("pole: "+oblicz_pole(wierzcholki));
     }
     
 }
