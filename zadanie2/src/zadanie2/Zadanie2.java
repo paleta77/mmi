@@ -53,16 +53,23 @@ public class Zadanie2 {
         double wynik = 0;
         for(int i = 0; i<tablica.length-1;i++)
         {
-            wynik =  wynik + Math.sqrt((tablica[i+1][0]-tablica[i][0])+(tablica[i+1][1]-tablica[i][1]));
+            wynik =  wynik + Math.sqrt((tablica[i+1][0]-tablica[i][0])*(tablica[i+1][0]-tablica[i][0])+(tablica[i+1][1]-tablica[i][1])*(tablica[i+1][1]-tablica[i][1]));
         }
         
-        wynik = wynik + Math.sqrt((tablica[tablica.length-1][0]-tablica[tablica.length-1][0])+(tablica[0][1]-tablica[0][1]));
+        wynik = wynik + Math.sqrt((tablica[0][0]-tablica[tablica.length-1][0])*(tablica[0][0]-tablica[tablica.length-1][0])+(tablica[0][1]-tablica[tablica.length-1][1])*(tablica[0][1]-tablica[tablica.length-1][1]));
         
         return wynik;
     }
     
     public static double oblicz_pole(double tablica[][]){
         double pole = 0;
+        
+        for(int i =0; i<tablica.length-1; i++)
+        {
+            pole = pole + ((tablica[i][1]+tablica[i+1][1])*(tablica[i][0]-tablica[i+1][0]))/2;
+        }
+        
+        pole = pole + ((tablica[0][1]+tablica[tablica.length-1][1])*(tablica[0][0]-tablica[tablica.length-1][0]))/2;
         
         return pole;
     }
