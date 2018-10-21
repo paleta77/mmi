@@ -76,6 +76,24 @@ public class Zadanie2 {
         return abs(pole);
     }
     
+   public static double[][] obrot_o_kat (double tablica[][]){
+       
+       
+        System.out.print("Podaj kąt alfa (w stopniach): ");
+        Scanner scan = new Scanner(System.in); 
+        double alfa; //kąt alfa w stopniach
+        alfa = scan.nextInt();
+        scan.close(); //zakonczenie wczytawania z klawiatury
+        
+        for(int i =0; i<tablica.length-1; i++)
+        {
+         tablica[i][0] = (tablica[i][0]) * Math.cos(Math.toRadians(alfa)) - (tablica[i][1]) *  Math.sin(Math.toRadians(alfa)); //x' = x*cos(alfa) - y*sin(alfa)
+         tablica[i][1] = (tablica[i][0]) * Math.sin(Math.toRadians(alfa)) + (tablica[i][1]) *  Math.cos(Math.toRadians(alfa)); //y' = x*sin(alfa) - y*cos(alfa)
+        }
+        
+        return tablica;
+    }
+    
     public static void zapis_do_pliku(double tablica[][]) throws FileNotFoundException{
         PrintWriter out = new PrintWriter("figura.txt");
         out.println("# plotting_data1.dat");
@@ -95,6 +113,7 @@ public class Zadanie2 {
         System.out.println("obwód: "+oblicz_obwod(wierzcholki));
         System.out.println("pole: "+oblicz_pole(wierzcholki));
         zapis_do_pliku(wierzcholki);
+        obrot_o_kat (wierzcholki); // w tablicy zapisane nowe współrzędne wierzchołków
     }
     
 }
