@@ -5,6 +5,8 @@
  */
 package zadanie2;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import static java.lang.Math.*;
 import java.util.Scanner; //do wczytawania z klawiatury
 
@@ -74,13 +76,25 @@ public class Zadanie2 {
         return abs(pole);
     }
     
-    public static void main(String[] args) {
+    public static void zapis_do_pliku(double tablica[][]) throws FileNotFoundException{
+        PrintWriter out = new PrintWriter("figura.txt");
+        out.println("# plotting_data1.dat");
+        out.println("# x y");
+        for(int i=0;i<tablica.length;i++)
+        {
+            out.println(tablica[i][0]+" "+tablica[i][1]);
+        }
+        out.close();
+    }
+    
+    public static void main(String[] args) throws FileNotFoundException {
         // TODO code application logic here
         
         double[][] wierzcholki = wczytaj_figure(); //tablica ze wspolrzednymi wierzcholkow
         wypisz_tablice(wierzcholki);
         System.out.println("obwód: "+oblicz_obwod(wierzcholki));
         System.out.println("pole: "+oblicz_pole(wierzcholki));
+        zapis_do_pliku(wierzcholki);
     }
     
 }
