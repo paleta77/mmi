@@ -19,9 +19,10 @@ public class Zadanie2 {
     /**
      * @param args the command line arguments
      */
+    static Scanner scan = new Scanner(System.in);
+    
     public static double[][] wczytaj_figure() {  
         System.out.print("Podaj ilosc wierzcholkow: ");
-        Scanner scan = new Scanner(System.in); //do wczytawania z klawiatury
         
         int wielkosc; //ilosc wierzcholkow
         wielkosc = scan.nextInt();
@@ -38,7 +39,7 @@ public class Zadanie2 {
         }
         
         
-        scan.close(); //zakonczenie wczytawania z klawiatury
+       
         return tablica; 
 }
     
@@ -80,10 +81,11 @@ public class Zadanie2 {
        
        
         System.out.print("Podaj kąt alfa (w stopniach): ");
-        Scanner scan = new Scanner(System.in); 
+        
         double alfa; //kąt alfa w stopniach
-        alfa = scan.nextInt();
-        scan.close(); //zakonczenie wczytawania z klawiatury
+        alfa = 0;
+        alfa = scan.nextDouble();
+         //zakonczenie wczytawania z klawiatury
         
         for(int i =0; i<tablica.length-1; i++)
         {
@@ -114,6 +116,7 @@ public class Zadanie2 {
         System.out.println("pole: "+oblicz_pole(wierzcholki));
         zapis_do_pliku(wierzcholki);
         obrot_o_kat (wierzcholki); // w tablicy zapisane nowe współrzędne wierzchołków
+        scan.close();
     }
     
 }
