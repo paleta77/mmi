@@ -20,7 +20,7 @@ public class Zadanie2 {
      * @param args the command line arguments
      */
     static Scanner scan = new Scanner(System.in);
-
+    
     public static double[][] wczytaj_figure() {
         System.out.print("Podaj ilosc wierzcholkow: ");
 
@@ -72,10 +72,34 @@ public class Zadanie2 {
         return abs(pole);
     }
 
-    public static double[][] obrot_o_kat(double tablica[][]) {
+    public static void zapis_do_pliku(double tablica[][]) throws FileNotFoundException {
+        PrintWriter out = new PrintWriter("figura.txt");
+        out.println("# plotting_data1.dat");
+        out.println("# x y");
+        for (int i = 0; i < tablica.length; i++) {
+            out.println(tablica[i][0] + " " + tablica[i][1]);
+        }
+        out.close();
+    }
+
+    public static double[][] obrot_o_kat(double oryginal[][]) {
+
+        System.out.println("Obrót o kąt alfa względem punktu (a,b): ");
+
+        //kopiowanie tablicy
+        int length = oryginal.length;
+        double[][] tablica = new double[length][oryginal[0].length];
+        for (int i = 0; i < length; i++) {
+            System.arraycopy(oryginal[i], 0, tablica[i], 0, oryginal[i].length);
+        }
+
+        for (int i = 0; i < tablica.length; i++) {
+            System.out.println("Wierzcholek (kopia)" + (i + 1) + " x:" + tablica[i][0]);
+            System.out.println("Wierzcholek (kopia)" + (i + 1) + " y:" + tablica[i][1]);
+            System.out.println();
+        }
 
         // obrót o kąt alfa względem punktu (a,b)
-        System.out.println("Obrót o kąt alfa względem punktu (a,b): ");
         System.out.print("Podaj kąt alfa (w stopniach): ");
         double alfa; //kąt alfa w stopniach
         alfa = 0;
@@ -93,14 +117,30 @@ public class Zadanie2 {
             tablica[i][0] = ((tablica[i][0]) - a) * Math.cos(Math.toRadians(alfa)) - ((tablica[i][1]) - b) * Math.sin(Math.toRadians(alfa)) + a; //x' = (x-a)*cos(alfa) - (y-b)*sin(alfa) + a
             tablica[i][1] = ((tablica[i][0]) - a) * Math.sin(Math.toRadians(alfa)) + ((tablica[i][1]) - b) * Math.cos(Math.toRadians(alfa)) + b; //y' = (x-a)*sin(alfa) + (y-b)*cos(alfa) + b
         }
+    // wypisywanie
+        wypisz_tablice(tablica);
 
         return tablica;
     }
 
-    public static double[][] przesuniecie_o_wektor(double tablica[][]) {
+    public static double[][] przesuniecie_o_wektor(double oryginal[][]) {
+
+        System.out.println("Przesunięcie punktu o podany wektor: ");
+
+        //kopiowanie tablicy
+        int length = oryginal.length;
+        double[][] tablica = new double[length][oryginal[0].length];
+        for (int i = 0; i < length; i++) {
+            System.arraycopy(oryginal[i], 0, tablica[i], 0, oryginal[i].length);
+        }
+
+        for (int i = 0; i < tablica.length; i++) {
+            System.out.println("Wierzcholek (kopia)" + (i + 1) + " x:" + tablica[i][0]);
+            System.out.println("Wierzcholek (kopia)" + (i + 1) + " y:" + tablica[i][1]);
+            System.out.println();
+        }
 
         // przesunięcie punktu o podany wektor
-        System.out.println("Przesunięcie punktu o podany wektor: ");
         System.out.print("Podaj wartość x wektora: "); //współrzędną x wektora
         double a;
         a = scan.nextDouble();
@@ -113,14 +153,30 @@ public class Zadanie2 {
             tablica[i][0] = (tablica[i][0]) + a;
             tablica[i][1] = (tablica[i][1]) + b;
         }
+    // wypisywanie
+        wypisz_tablice(tablica);
 
         return tablica;
     }
 
-    public static double[][] podobienstwo_z_zadana_skala(double tablica[][]) {
+    public static double[][] podobienstwo_z_zadana_skala(double oryginal[][]) {
+
+        System.out.println("Podobieństwo z zadaną skalą k wględem punktu (a,b): ");
+
+        //kopiowanie tablicy
+        int length = oryginal.length;
+        double[][] tablica = new double[length][oryginal[0].length];
+        for (int i = 0; i < length; i++) {
+            System.arraycopy(oryginal[i], 0, tablica[i], 0, oryginal[i].length);
+        }
+
+        for (int i = 0; i < tablica.length; i++) {
+            System.out.println("Wierzcholek (kopia)" + (i + 1) + " x:" + tablica[i][0]);
+            System.out.println("Wierzcholek (kopia)" + (i + 1) + " y:" + tablica[i][1]);
+            System.out.println();
+        }
 
         // podobieństwo z zadaną skalą k wględem punktu (a,b)
-        System.out.println("Podobieństwo z zadaną skalą k wględem punktu (a,b): ");
         System.out.print("Podaj współrzędną x punktu: "); //współrzędną x punktu
         double a;
         a = scan.nextDouble();
@@ -137,17 +193,10 @@ public class Zadanie2 {
             tablica[i][0] = (k * ((tablica[i][0]) - a)) + a; // x' = k * (x - a) + a;
             tablica[i][1] = (k * ((tablica[i][1]) - b)) + b; // x' = k * (y - b) + b;
         }
-        return tablica;
-    }
+    // wypisywanie
+        wypisz_tablice(tablica);
 
-    public static void zapis_do_pliku(double tablica[][]) throws FileNotFoundException {
-        PrintWriter out = new PrintWriter("figura.txt");
-        out.println("# plotting_data1.dat");
-        out.println("# x y");
-        for (int i = 0; i < tablica.length; i++) {
-            out.println(tablica[i][0] + " " + tablica[i][1]);
-        }
-        out.close();
+        return tablica;
     }
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -158,12 +207,13 @@ public class Zadanie2 {
         System.out.println("obwód: " + oblicz_obwod(wierzcholki));
         System.out.println("pole: " + oblicz_pole(wierzcholki));
         zapis_do_pliku(wierzcholki);
+
         obrot_o_kat(wierzcholki); // w tablicy zapisane nowe współrzędne wierzchołków
-        wypisz_tablice(wierzcholki);
+
         przesuniecie_o_wektor(wierzcholki); // przesuwa o wektor
-        wypisz_tablice(wierzcholki);
+
         podobienstwo_z_zadana_skala(wierzcholki); //podobieństwo z zadaną skalą
-        wypisz_tablice(wierzcholki);
+
         scan.close();
     }
 
