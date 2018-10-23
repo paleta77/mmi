@@ -20,6 +20,16 @@ public class Zadanie2 {
      * @param args the command line arguments
      */
     static Scanner scan = new Scanner(System.in);
+    
+    public static void zapis_do_pliku(double tablica[][], String nazwa_pliku) throws FileNotFoundException {
+        PrintWriter out = new PrintWriter(nazwa_pliku);
+        out.println("# plotting_data1.dat");
+        out.println("# x y");
+        for (int i = 0; i < tablica.length; i++) {
+            out.println(tablica[i][0] + " " + tablica[i][1]);
+        }
+        out.close();
+    }
 
     public static double[][] wczytaj_figure() {
         System.out.print("Podaj ilosc wierzcholkow: ");
@@ -68,11 +78,11 @@ public class Zadanie2 {
         }
 
         pole = pole + ((tablica[0][1] + tablica[tablica.length - 1][1]) * (tablica[0][0] - tablica[tablica.length - 1][0])) / 2;
-
+        
         return abs(pole);
     }
 
-    public static double[][] obrot_o_kat(double tablica[][]) {
+    public static double[][] obrot_o_kat(double tablica[][]) throws FileNotFoundException {
 
         // obrót o kąt alfa względem punktu (a,b)
         System.out.println("Obrót o kąt alfa względem punktu (a,b): ");
@@ -93,11 +103,13 @@ public class Zadanie2 {
             tablica[i][0] = ((tablica[i][0]) - a) * Math.cos(Math.toRadians(alfa)) - ((tablica[i][1]) - b) * Math.sin(Math.toRadians(alfa)) + a; //x' = (x-a)*cos(alfa) - (y-b)*sin(alfa) + a
             tablica[i][1] = ((tablica[i][0]) - a) * Math.sin(Math.toRadians(alfa)) + ((tablica[i][1]) - b) * Math.cos(Math.toRadians(alfa)) + b; //y' = (x-a)*sin(alfa) + (y-b)*cos(alfa) + b
         }
+        
+        zapis_do_pliku(tablica, "obrot.txt");
 
         return tablica;
     }
 
-    public static double[][] przesuniecie_o_wektor(double tablica[][]) {
+    public static double[][] przesuniecie_o_wektor(double tablica[][]) throws FileNotFoundException {
 
         // przesunięcie punktu o podany wektor
         System.out.println("Przesunięcie punktu o podany wektor: ");
@@ -114,10 +126,12 @@ public class Zadanie2 {
             tablica[i][1] = (tablica[i][1]) + b;
         }
 
+        zapis_do_pliku(tablica, "przesuniecie.txt");
+        
         return tablica;
     }
 
-    public static double[][] podobienstwo_z_zadana_skala(double tablica[][]) {
+    public static double[][] podobienstwo_z_zadana_skala(double tablica[][]) throws FileNotFoundException {
 
         // podobieństwo z zadaną skalą k wględem punktu (a,b)
         System.out.println("Podobieństwo z zadaną skalą k wględem punktu (a,b): ");
@@ -137,17 +151,10 @@ public class Zadanie2 {
             tablica[i][0] = (k * ((tablica[i][0]) - a)) + a; // x' = k * (x - a) + a;
             tablica[i][1] = (k * ((tablica[i][1]) - b)) + b; // x' = k * (y - b) + b;
         }
+        
+        zapis_do_pliku(tablica, "podobienstwo.txt");
+        
         return tablica;
-    }
-
-    public static void zapis_do_pliku(double tablica[][]) throws FileNotFoundException {
-        PrintWriter out = new PrintWriter("figura.txt");
-        out.println("# plotting_data1.dat");
-        out.println("# x y");
-        for (int i = 0; i < tablica.length; i++) {
-            out.println(tablica[i][0] + " " + tablica[i][1]);
-        }
-        out.close();
     }
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -157,13 +164,13 @@ public class Zadanie2 {
         wypisz_tablice(wierzcholki);
         System.out.println("obwód: " + oblicz_obwod(wierzcholki));
         System.out.println("pole: " + oblicz_pole(wierzcholki));
-        zapis_do_pliku(wierzcholki);
         obrot_o_kat(wierzcholki); // w tablicy zapisane nowe współrzędne wierzchołków
         wypisz_tablice(wierzcholki);
         przesuniecie_o_wektor(wierzcholki); // przesuwa o wektor
         wypisz_tablice(wierzcholki);
         podobienstwo_z_zadana_skala(wierzcholki); //podobieństwo z zadaną skalą
         wypisz_tablice(wierzcholki);
+        zapis_do_pliku(wierzcholki, "figura_koncowa.txt");
         scan.close();
     }
 
