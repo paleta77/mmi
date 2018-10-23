@@ -23,11 +23,11 @@ public class Zadanie2 {
     
     public static void zapis_do_pliku(double tablica[][], String nazwa_pliku) throws FileNotFoundException {
         PrintWriter out = new PrintWriter(nazwa_pliku);
-        out.println("# plotting_data1.dat");
         out.println("# x y");
         for (int i = 0; i < tablica.length; i++) {
             out.println(tablica[i][0] + " " + tablica[i][1]);
         }
+        out.println(tablica[0][0] + " " + tablica[0][1]);
         out.close();
     }
 
