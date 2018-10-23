@@ -118,7 +118,7 @@ public class Zadanie2 {
             tablica[i][1] = ((tablica[i][0]) - a) * Math.sin(Math.toRadians(alfa)) + ((tablica[i][1]) - b) * Math.cos(Math.toRadians(alfa)) + b; //y' = (x-a)*sin(alfa) + (y-b)*cos(alfa) + b
         }
 
-        zapis_do_pliku(tablica, "przesuniecie.txt");
+        zapis_do_pliku(tablica, "obrot.txt");
         
         // wypisywanie
         wypisz_tablice(tablica);
@@ -200,7 +200,7 @@ public class Zadanie2 {
             tablica[i][1] = (k * ((tablica[i][1]) - b)) + b; // x' = k * (y - b) + b;
         }
 
-        zapis_do_pliku(tablica, "przesuniecie.txt");
+        zapis_do_pliku(tablica, "podobienstwo.txt");
         
         // wypisywanie
         wypisz_tablice(tablica);

@@ -1,4 +1,0 @@
-# plotting_data1.dat
-# x y
-4.0 4.0
-8.0 8.0
