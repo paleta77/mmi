@@ -119,7 +119,7 @@ public class Zadanie2 {
         }
 
         zapis_do_pliku(tablica, "obrot.txt");
-        
+
         // wypisywanie
         wypisz_tablice(tablica);
 
@@ -153,12 +153,12 @@ public class Zadanie2 {
         b = scan.nextDouble();
 
         for (int i = 0; i < tablica.length; i++) {
-            tablica[i][0] = (tablica[i][0]) + a;
-            tablica[i][1] = (tablica[i][1]) + b;
+            tablica[i][0] = (tablica[i][0]) + a;    // x' = x + a;
+            tablica[i][1] = (tablica[i][1]) + b;    // y' = y + b;
         }
 
         zapis_do_pliku(tablica, "przesuniecie.txt");
-        
+
         // wypisywanie
         wypisz_tablice(tablica);
 
@@ -167,7 +167,7 @@ public class Zadanie2 {
 
     public static double[][] podobienstwo_z_zadana_skala(double oryginal[][]) throws FileNotFoundException {
 
-        System.out.println("Podobieństwo z zadaną skalą k wględem punktu (a,b): ");
+        System.out.println("Jednokładność o środku w dowolnym punkcie S(a,b) i skali k!=0: ");
 
         //kopiowanie tablicy
         int length = oryginal.length;
@@ -182,12 +182,12 @@ public class Zadanie2 {
             System.out.println();
         }
 
-        // podobieństwo z zadaną skalą k wględem punktu (a,b)
-        System.out.print("Podaj współrzędną x punktu: "); //współrzędną x punktu
+        // jednokładność o środku w dowolnym punkcie S(a,b) i skali k!=0
+        System.out.print("Podaj współrzędną x punktu S: "); //współrzędną x punktu
         double a;
         a = scan.nextDouble();
 
-        System.out.print("Podaj współrzędną y punktu: "); //współrzędną y punktu
+        System.out.print("Podaj współrzędną y punktu S: "); //współrzędną y punktu
         double b;
         b = scan.nextDouble();
 
@@ -196,12 +196,12 @@ public class Zadanie2 {
         k = scan.nextDouble();
 
         for (int i = 0; i < tablica.length; i++) {
-            tablica[i][0] = (k * ((tablica[i][0]) - a)) + a; // x' = k * (x - a) + a;
-            tablica[i][1] = (k * ((tablica[i][1]) - b)) + b; // x' = k * (y - b) + b;
+            tablica[i][0] = (1 - k) * a + k * (tablica[i][0]); // x' = (1-k)a + kx;
+            tablica[i][1] = (1 - k) * b + k * (tablica[i][1]); // y' = (1-k)b + ky;
         }
 
-        zapis_do_pliku(tablica, "podobienstwo.txt");
-        
+        zapis_do_pliku(tablica, "jednokladnosc.txt");
+
         // wypisywanie
         wypisz_tablice(tablica);
 
@@ -215,8 +215,9 @@ public class Zadanie2 {
         wypisz_tablice(wierzcholki);
         System.out.println("obwód: " + oblicz_obwod(wierzcholki));
         System.out.println("pole: " + oblicz_pole(wierzcholki));
+        System.out.println();
         zapis_do_pliku(wierzcholki, "figura_poczatkowa.txt");
-        
+
         obrot_o_kat(wierzcholki); // w tablicy zapisane nowe współrzędne wierzchołków
 
         przesuniecie_o_wektor(wierzcholki); // przesuwa o wektor
@@ -224,7 +225,7 @@ public class Zadanie2 {
         podobienstwo_z_zadana_skala(wierzcholki); //podobieństwo z zadaną skalą
 
         zapis_do_pliku(wierzcholki, "figura_koncowa.txt");
-        
+
         scan.close();
     }
 
