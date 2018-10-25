@@ -6,6 +6,7 @@
 package zadanie2;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.Math.*;
 import java.util.Scanner; //do wczytawania z klawiatury
@@ -157,9 +158,11 @@ public class Zadanie2 {
         return tablica;
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, IOException {
         // TODO code application logic here
 
+        Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"gnuplot -e \"plot 'podobienstwo.txt' with linespoints linestyle 1; pause -1\"\"");
+        
         double[][] wierzcholki = wczytaj_figure(); //tablica ze wspolrzednymi wierzcholkow
         wypisz_tablice(wierzcholki);
         System.out.println("obwód: " + oblicz_obwod(wierzcholki));
@@ -171,6 +174,9 @@ public class Zadanie2 {
         podobienstwo_z_zadana_skala(wierzcholki); //podobieństwo z zadaną skalą
         wypisz_tablice(wierzcholki);
         zapis_do_pliku(wierzcholki, "figura_koncowa.txt");
+        
+        
+        
         scan.close();
     }
 
