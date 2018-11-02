@@ -75,10 +75,11 @@ public class Zadanie2 {
         double pole = 0;
 
         for (int i = 0; i < tablica.length - 1; i++) {
-            pole = pole + ((tablica[i][1] + tablica[i + 1][1]) * (tablica[i][0] - tablica[i + 1][0])) / 2;
+            //if(tablica[i][1]!=tablica[i+1][2])
+            pole = pole + 0.5*((tablica[i][0] * tablica[i + 1][1]) - (tablica[i+1][0] * tablica[i][1]));
         }
 
-        pole = pole + ((tablica[0][1] + tablica[tablica.length - 1][1]) * (tablica[0][0] - tablica[tablica.length - 1][0])) / 2;
+        pole = pole + 0.5*((tablica[0][0] * tablica[tablica.length - 1][1]) - (tablica[tablica.length - 1][0] * tablica[0][1]));
         
         return abs(pole);
     }
@@ -125,6 +126,8 @@ public class Zadanie2 {
 
         // wypisywanie
         wypisz_tablice(tablica);
+        System.out.println("obwód: " + oblicz_obwod(tablica));
+        System.out.println("pole: " + oblicz_pole(tablica));
 
         return tablica;
     }
@@ -165,6 +168,8 @@ public class Zadanie2 {
 
         // wypisywanie
         wypisz_tablice(tablica);
+        System.out.println("obwód: " + oblicz_obwod(tablica));
+        System.out.println("pole: " + oblicz_pole(tablica));
 
         return tablica;
     }
@@ -209,6 +214,8 @@ public class Zadanie2 {
 
         // wypisywanie
         wypisz_tablice(tablica);
+        System.out.println("obwód: " + oblicz_obwod(tablica));
+        System.out.println("pole: " + oblicz_pole(tablica));
 
         return tablica;
     }
@@ -221,12 +228,15 @@ public class Zadanie2 {
         System.out.println("pole: " + oblicz_pole(wierzcholki));
         
         obrot_o_kat(wierzcholki); // w tablicy zapisane nowe współrzędne wierzchołków
+        Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"gnuplot -e \"plot 'E:\\mmi\\zadanie2\\obrot.txt' with linespoints linestyle 1; pause -1\"\"");
         przesuniecie_o_wektor(wierzcholki); // przesuwa o wektor
+        Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"gnuplot -e \"plot 'E:\\mmi\\zadanie2\\przesuniecie.txt' with linespoints linestyle 1; pause -1\"\"");
         podobienstwo_z_zadana_skala(wierzcholki); //podobieństwo z zadaną skalą
+        Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"gnuplot -e \"plot 'E:\\mmi\\zadanie2\\jednokladnosc.txt' with linespoints linestyle 1; pause -1\"\"");
         
         zapis_do_pliku(wierzcholki, "figura_koncowa.txt");
         
-        Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"gnuplot -e \"plot 'podobienstwo.txt' with linespoints linestyle 1; pause -1\"\"");
+        //Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"gnuplot -e \"plot 'E:\\mmi\\zadanie2\\figura_koncowa.txt' with linespoints linestyle 1; pause -1\"\"");
 
         scan.close();
     }
