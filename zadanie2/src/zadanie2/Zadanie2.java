@@ -73,13 +73,16 @@ public class Zadanie2 {
 
     public static double oblicz_pole(double tablica[][]) {
         double pole = 0;
+        
+        double offsetx = tablica[0][0];
+        double offsety = tablica[0][1];
 
         for (int i = 0; i < tablica.length - 1; i++) {
             //if(tablica[i][1]!=tablica[i+1][2])
-            pole = pole + 0.5*((tablica[i][0] * tablica[i + 1][1]) - (tablica[i+1][0] * tablica[i][1]));
+            pole = pole + 0.5*(((tablica[i][0]-offsetx) * (tablica[i + 1][1]-offsety)) - ((tablica[i+1][0]-offsetx) * (tablica[i][1]-offsety)));
         }
 
-        pole = pole + 0.5*((tablica[0][0] * tablica[tablica.length - 1][1]) - (tablica[tablica.length - 1][0] * tablica[0][1]));
+        pole = pole + 0.5*(((tablica[0][0]-offsetx) * (tablica[tablica.length - 1][1]-offsety)) - ((tablica[tablica.length - 1][0]-offsetx) * (tablica[0][1]-offsety)));
         
         return abs(pole);
     }
